@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { DELETE_TRANSLATION, reducer } from "./Reducer";
+import { ADD_TRANSLATION, DELETE_TRANSLATION, reducer } from "./Reducer";
 import { PropTypes } from "prop-types";
 
 const initialState = {
@@ -23,11 +23,19 @@ function GlobalProvider({ children }) {
     });
   };
 
+  const addTransacttion = (transaction) => {
+    dispatch({
+      type: ADD_TRANSLATION,
+      payload: transaction,
+    });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
         deleteTransaction,
+        addTransacttion,
       }}
     >
       {children}
